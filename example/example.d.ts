@@ -3,7 +3,7 @@
 declare enum Elevator {
     DoorsOpened = 0,
     DoorsClosed = 1,
-    Moving = 2,
+    Moving = 2
 }
 declare var fsm: typestate.FiniteStateMachine<Elevator>;
 declare var handsInDoor: boolean;

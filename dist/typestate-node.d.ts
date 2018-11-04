@@ -1,3 +1,6 @@
+/*! typestate - v1.0.6 - 2018-11-04
+* https://github.com/eonarheim/TypeState
+* Copyright (c) 2018 Erik Onarheim; Licensed BSD-2-Clause*/
 declare namespace typestate {
     /**
      * Transition grouping to faciliate fluent api
@@ -65,13 +68,13 @@ declare namespace typestate {
          */
         from(...states: T[]): Transitions<T>;
         fromAny(states: any): Transitions<T>;
-        private _validTransition(from, to);
+        private _validTransition;
         /**
          * Check whether a transition between any two states is valid.
          *    If allowImplicitSelfTransition is true, always allow transitions from a state back to itself.
          *     Otherwise, check if it's a valid transition.
          */
-        private _canGo(fromState, toState);
+        private _canGo;
         /**
          * Check whether a transition to a new state is valid
          */
@@ -89,13 +92,24 @@ declare namespace typestate {
         * Reset the finite state machine back to the start state, DO NOT USE THIS AS A SHORTCUT for a transition.
         * This is for starting the fsm from the beginning.
         */
-        reset(): void;
+        reset(options?: ResetOptions): void;
         /**
          * Whether or not the current state equals the given state
          */
         is(state: T): boolean;
-        private _transitionTo(state, event?);
+        private _transitionTo;
     }
+    /**
+     * Options to pass to the `reset()` method.
+     */
+    interface ResetOptions {
+        /** Whether or not the speciefied `on()` handlers for the start state should be called when resetted. */
+        runCallbacks?: boolean;
+    }
+    /**
+     * Default `ResetOptions` values used in the `reset()` mehtod.
+     */
+    const DefaultResetOptions: ResetOptions;
 }
 export { typestate };
 export { typestate as TypeState };

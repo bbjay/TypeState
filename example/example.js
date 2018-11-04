@@ -3,6 +3,10 @@
 // Let's model the states of an elevator
 // Define an Enum with all possible valid states
 var Elevator;
+/// <reference path="../dist/typestate.d.ts" />
+/// <reference path="knockout.d.ts" />
+// Let's model the states of an elevator
+// Define an Enum with all possible valid states
 (function (Elevator) {
     Elevator[Elevator["DoorsOpened"] = 0] = "DoorsOpened";
     Elevator[Elevator["DoorsClosed"] = 1] = "DoorsClosed";
@@ -26,7 +30,7 @@ fsm.onEnter(Elevator.DoorsClosed, function () {
     }
     return true;
 });
-var ViewModel = (function () {
+var ViewModel = /** @class */ (function () {
     function ViewModel() {
         var _this = this;
         this.HandsInDoor = ko.observable();
